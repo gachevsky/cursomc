@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.studio.william.cursomc.domain.enums.EstadoPago;
 @Entity
 public class PagoConCheque extends Pago {
@@ -11,9 +12,13 @@ public class PagoConCheque extends Pago {
 	private static final long serialVersionUID = 1L;
 
 	
-
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date fechaVencimiento;
+	
+	@JsonFormat(pattern="dd/MM/yyyy")
 	private Date fechaPago;
+	
+	
 	public PagoConCheque() {
 	}
 	public PagoConCheque(Integer id, EstadoPago estado, Pedido pedido, Date fechavencimiento,   Date fechaPago) {
