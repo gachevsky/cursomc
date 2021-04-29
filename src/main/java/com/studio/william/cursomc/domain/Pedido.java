@@ -2,6 +2,8 @@ package com.studio.william.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,29 +12,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 
 @Entity
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id; 
+	private Integer id;
 	private Date fechaPedido;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pago pago;
-	
+
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "direccion_de_entrega_id")
 	private Direccion direccionDeEntrega;
+
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> items = new HashSet<>();
 
 	public Pedido() {
 	}
@@ -70,6 +75,30 @@ public class Pedido implements Serializable {
 		this.pago = pago;
 	}
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Direccion getDireccionDeEntrega() {
+		return direccionDeEntrega;
+	}
+
+	public void setDireccionDeEntrega(Direccion direccionDeEntrega) {
+		this.direccionDeEntrega = direccionDeEntrega;
+	}
+
+	public Set<ItemPedido> getItems() {
+		return items;
+	}
+
+	public void setItems(Set<ItemPedido> items) {
+		this.items = items;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -95,22 +124,4 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Direccion getDireccionDeEntrega() {
-		return direccionDeEntrega;
-	}
-
-	public void setDireccionDeEntrega(Direccion direccionDeEntrega) {
-		this.direccionDeEntrega = direccionDeEntrega;
-	}
-	
-	
-	
 }
