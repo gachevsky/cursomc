@@ -1,5 +1,6 @@
 package com.studio.william.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.studio.william.cursomc.services.exceptions.DataIntegrityException;
@@ -40,6 +41,10 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("No es posible eliminar una categoria que tiene productos");
 		}
-		
+		 	
+	}
+	
+	public List<Categoria> findAll() {
+		return repo.findAll();
 	}
 }
