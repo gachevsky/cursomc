@@ -8,4 +8,6 @@ import com.studio.william.cursomc.domain.Ciudad;
 @Repository
 public interface CuidadRepository extends JpaRepository<Ciudad, Integer> {
 
+	
+
 }

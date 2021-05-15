@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.studio.william.cursomc.domain.Cliente;
 import com.studio.william.cursomc.dto.ClienteDTO;
+import com.studio.william.cursomc.dto.ClienteNewDTO;
 import com.studio.william.cursomc.services.ClienteService;
 
 
@@ -37,13 +38,22 @@ public class ClienteResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTo){
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTo){
 		Cliente obj = service.fromDto(objDTo);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
+//	@RequestMapping(method = RequestMethod.POST)
+//	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO objDTo){
+//		Cliente obj = service.fromDto(objDTo);
+//		obj = service.insert(obj);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+//				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+//		return ResponseEntity.created(uri).build();
+//	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDTO, @PathVariable Integer id){
