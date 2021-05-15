@@ -41,7 +41,7 @@ public abstract class Pago implements Serializable {
 	public Pago(Integer id, EstadoPago estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado.getCod();
+		this.estado = (estado == null )? null :estado.getCod();
 		this.pedido = pedido;
 		
 	}
