@@ -26,7 +26,7 @@ public class Cliente implements Serializable{
 	private Integer id;
 	private String nombre; 
 	private String email;
-	private String cpfOuCnpj; 
+	private String numeroDocumento; 
 	private Integer tipo;//TipoCliente tipo;
 	
 	//@JsonManagedReference
@@ -46,13 +46,14 @@ public class Cliente implements Serializable{
 	public Cliente() {
 	}
 
-	public Cliente(Integer id, String nombre, String email, String cpfOuCnpj, TipoCliente tipo) {
+	public Cliente(Integer id, String nombre, String email, String numeroDocumento, TipoCliente tipo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.email = email;
-		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.numeroDocumento = numeroDocumento;
+		
+		this.tipo = (tipo==null) ? null :  tipo.getCod();
 	}
 
 	public Integer getId() {
@@ -79,12 +80,14 @@ public class Cliente implements Serializable{
 		this.email = email;
 	}
 
-	public String getCpfOuCnpj() {
-		return cpfOuCnpj;
+
+
+	public String getNumeroDocumento() {
+		return numeroDocumento;
 	}
 
-	public void setCpfOuCnpj(String cpfOuCnpj) {
-		this.cpfOuCnpj = cpfOuCnpj;
+	public void setNumeroDocumento(String numeroDocumento) {
+		this.numeroDocumento = numeroDocumento;
 	}
 
 	public TipoCliente getTipo() {
