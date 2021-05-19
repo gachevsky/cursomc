@@ -58,7 +58,7 @@ public class ClienteService {
 		try {
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("No es posible eliminar por integridad de clases");
+			throw new DataIntegrityException("No es posible eliminar porque tiene pedidos relacionados");
 		}
 
 	}
