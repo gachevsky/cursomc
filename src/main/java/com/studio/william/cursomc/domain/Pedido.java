@@ -58,6 +58,13 @@ public class Pedido implements Serializable {
 		this.direccionDeEntrega = direccionDeEntrega;
 	}
 
+	public double getValorTotal() {
+		double suma = 0.0;
+		for (ItemPedido itemPedido : items) {
+			suma = suma + itemPedido.getSubTotal();
+		}
+		return suma;
+	}
 	public Integer getId() {
 		return id;
 	}
